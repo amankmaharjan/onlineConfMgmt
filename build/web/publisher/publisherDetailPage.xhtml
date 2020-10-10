@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Online conference Management</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    </h:head>
+    <h:body>
+        <!--loads common templates-->
+        <ui:composition template = "../template/common.xhtml">
+            <!--navigation bar components-->
+            <ui:define name="header">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">Online conference management system</a>
+                        </div>
+                       <h:form>
+                            <ul class="nav navbar-nav">
+                                <li><h:commandLink class="active" value="Topic" action="topicPage"/></li>
+                                <li><h:commandLink value="Country" action="countryPage"/></li>
+                                <li><h:commandLink value="Publisher" action="publisherPage"/></li>
+                                <li><h:commandLink value="Presentation" action="presenterPage"/></li>
+                                <li><h:commandLink value="Attendee" action="attendeePage"/></li>
+                                <li><h:commandLink value="Online Session" action="presentationSessionPage"/></li>
+                                <li><h:commandLink value="Participant" action="participantPage"/></li>
+                            </ul>
+                        </h:form>
+                        <h:form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:commandLink value="Sing Up" rendered="#{!userController.user.isAdmin()}" action="registrationPage"/></li>
+                                <li><h:commandLink value="login" rendered="#{!userController.user.isAdmin()}" action="loginPage"/></li>
+                                <li><h:commandLink value="logOut"  action="#{userController.logOut()}" /></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </ui:define>
+            <!-- navigation bar ends -->
+
+            <!--contents starts-->
+            <ui:define name="content">
+                <!--Main container starts-->
+                <div class="container myContainerStyle">
+                    <div class="sectionTitle">
+                        <h4>Topics</h4>
+                    </div>
+                    <!--form view starts-->
+                    <f:view>
+                        <h:form class="center">
+                            <h4><h:outputText value="Create/Edit"/></h4>
+                            <h:panelGrid columns="2" class="form-group center">
+                                <h:outputLabel value="Id:" for="id" />
+                                <h:inputText id="id" value="#{topicController.topic.id}" title="Id" disabled="true" />
+                                <h:outputLabel value="TopicId:" for="topicId" />
+                                <h:inputText id="topicId" value="#{topicController.topic.topicId}" title="TopicId" />
+                                <h:outputLabel value="TopicTitle:" for="topicTitle" />
+                                <h:inputText id="topicTitle" value="#{topicController.topic.topicTitle}" title="TopicTitle" />
+                            </h:panelGrid>
+                            <!--buttons-->
+                            <h:commandButton  class="btn btn-top" value="Create" rendered="#{!topicController.edit}" action="#{topicController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Update" rendered="#{topicController.edit}"  action="#{topicController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Cancel" rendered="#{topicController.edit}"  action="#{topicController.cancel}"/>
+                            <h:commandButton  class="btn btn-top btn-success " value="Refresh"  action="#{topicController.init}"/>
+                            <!--button ends-->
+                            <h:messages class="messages" /> 
+                        </h:form>
+                    </f:view>
+                    <!--form view ends-->
+                    <f:view>
+                        <!--list view starts-->
+                        <h:form>
+                            <h1><h:outputText value="List"/></h1>
+                            <h:dataTable value="#{topicController.topicList}" var="item"  border="1" class="table table-dark ">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="TopicId"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.topicId}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="TopicTitle"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.topicTitle}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Options"/>
+                                    </f:facet>
+                                    <h:commandLink class="btn btn-top btn-primary" value="Edit" action="#{topicController.update(item)}"/>
+
+                                    <h:commandLink class="btn btn-top btn-danger" value="Delete" action="#{topicController.delete(item)}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                        <!--list view ends-->
+                    </f:view>
+                    <!--form ends-->
+                </div>
+                <!--main container ends-->
+            </ui:define>
+        </ui:composition> 
+
+    </h:body>
+
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/PresentationFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/Topic.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/login/registrationPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/CountryController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/publisher/publisherRegPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/common/OnlineConfrenceMessagesConstant.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/homePage/errorPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/presentationSession/presentationSessionPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/PresentationSession.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/PublisherFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/participant/participantDetailPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/Country.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/template/common.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/homePage/homePage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/PublisherController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/PresentationSessionFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/CountryFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/country/countryPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/template/header.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/presentation/presentationPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/Publisher.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/PresentationController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/UserController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/topic/topicPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/User.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/login/loginPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/TopicController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/Presentation.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/participant/participantRegPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/ParticipantFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/UserFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/template/footer.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/publisher/publisherPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/AbstractFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/WEB-INF/faces-config.xml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/PresentationSessionController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/template/contents.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/common/IMessages.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/homePage/adminPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/resources/css/main.css</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/controller/ParticipantController.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/session/TopicFacade.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/publisher/publisherDetailPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/participant/participantPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/src/java/OnlineConfrenceMgmt/entity/Participant.java</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/nbproject/faces-config.NavData</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/homePage/adminRegPage.xhtml</file>
+            <file>file:/C:/Users/User/OneDrive/MIT/term4/project/OnlineConfrenceMgmt/web/presentationSession/presentationSessionDetail.xhtml</file>
+        </group>
+    </open-files>
+</project-private>

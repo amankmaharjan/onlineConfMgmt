@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Online conference Management</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    </h:head>
+    <h:body>
+        <!--loads common templates-->
+        <ui:composition template = "../template/common.xhtml">
+            <!--navigation bar components-->
+            <ui:define name="header">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:form>
+                                <a class="" href="#"></a>
+                                <li><h:commandLink class="navbar-brand" value="Online conference management system" action="adminPage"/></li>
+                            </h:form>
+                        </div>
+                        <h:form>
+                            <ul class="nav navbar-nav">
+                                <li><h:commandLink value="Topic" action="topicPage" rendered="#{userController.user.isPublisher()||userController.user.admin}"/></li>
+                                <li><h:commandLink value="Country" action="countryPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Publisher" action="publisherPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Presentation" action="presenterPage" rendered="#{userController.user.isPublisher()||userController.user.admin||userController.user.isParticipant()}"/></li>
+                                <li><h:commandLink value="Online Session" action="presentationSessionPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Participant" action="participantPage" rendered="#{userController.user.admin}"/></li>
+                            </ul>
+                        </h:form>
+                        <h:form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:commandLink value="Hi #{userController.user.name}" rendered="#{userController.user.participant||userController.user.admin||userController.user.publisher}"/></li>
+                                <li><h:commandLink value="Sing Up" rendered="false" action="registrationPage"/></li>
+                                <li><h:commandLink value="login" rendered="false" action="loginPage"/></li>
+                                <li><h:commandLink value="logOut" rendered="#{userController.user.participant||userController.user.admin||userController.user.publisher}" action="#{userController.logOut()}" /></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </ui:define>
+            <!-- navigation bar ends -->
+
+            <!--contents starts-->
+            <ui:define name="content">
+                <!--Main container starts-->
+                <div class="container myContainerStyle">
+                    <div class="sectionTitle">
+                        <h4>Publisher</h4>
+                    </div>
+                    <!--form view starts-->
+                    <f:view>
+
+
+                        <h:form class="center">
+                            <h1><h:outputText value="Create/Edit"/></h1>
+                            <h:panelGrid columns="2" class="form-group center">
+                                <h:outputLabel value="Id:" for="id" />
+                                <h:inputText id="id" value="#{publisherController.publisher.id}" title="Id" disabled="true" />
+                                <h:outputLabel value="Name:" for="name" />
+                                <h:inputText id="firstName" value="#{publisherController.publisher.name}" title="name" required="true" requiredMessage="Username is required"/>
+                                <h:outputLabel value="Email:" for="email" />
+                                <h:inputText id="email" value="#{publisherController.publisher.email}" title="Email" required="true" requiredMessage="Email is required"/>
+                                <h:outputLabel value="Password:" for="pass" />
+                                <h:inputText id="pass" value="#{publisherController.publisher.password}" title="Password" required="true" requiredMessage="Password is required"/>
+                                <h:outputLabel value="Country:" for="country" />
+                                <h:selectOneMenu value="#{publisherController.country.id}" required="true" requiredMessage="Country is required" >
+                                    <f:selectItems value="#{publisherController.countryList}" var="country"  itemLabel="#{country.name}-#{country.zone}-#{country.gmtOffset}-" itemValue="#{country.id}"/>    
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+
+                            <!--buttons-->
+                            <h:commandButton  class="btn btn-top" value="Create" rendered="#{!publisherController.edit}" action="#{publisherController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Update" rendered="#{publisherController.edit}"  action="#{publisherController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Cancel" rendered="#{publisherController.edit}"  action="#{publisherController.cancel}"/>
+                            <h:commandButton  class="btn btn-top btn-success " value="Refresh"  action="#{publisherController.init}"/>
+                            <!--button ends-->
+                            <h:messages class="messages" /> 
+                        </h:form>
+                    </f:view>
+                    <!--form view ends-->
+                    <f:view>
+                        <!--list view starts-->
+                        <h:form>
+
+
+                            <h1><h:outputText value="List"/></h1>
+                            <h:dataTable value="#{publisherController.publisherList}" var="item" border="1" class="table table-dark ">
+
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Name"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Password"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.password}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Country"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.country.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Address"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.address}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="PhoneNumber"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.phoneNumber}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Email"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.email}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Roles"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.roles}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Options"/>
+                                    </f:facet>
+                                    <h:commandLink class="btn btn-top btn-primary" value="Edit" action="#{publisherController.update(item)}"/>
+                                    <h:commandLink class="btn btn-top btn-danger" value="Delete" action="#{publisherController.delete(item)}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                        <!--list view ends-->
+                    </f:view>
+                    <!--form ends-->
+                </div>
+                <!--main container ends-->
+            </ui:define>
+        </ui:composition> 
+
+    </h:body>
+
+</html>
+

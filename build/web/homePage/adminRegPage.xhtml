@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Online conference Management</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    </h:head>
+    <h:body>
+        <!--loads common templates-->
+        <ui:composition template = "../template/common.xhtml">
+            <!--navigation bar components-->
+            <ui:define name="header">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">Online conference management system</a>
+                        </div>
+                        <h:form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:commandLink value="login" action="loginPage"/></li>
+                            </ul>
+                        </h:form>
+
+                    </div>
+                </nav>
+            </ui:define>
+            <!-- navigation bar ends -->
+
+            <!--contents starts-->
+            <ui:define name="content">
+                <!--Main container starts-->
+                <div class="container myContainerStyle">
+                    <div class="sectionTitle">
+                        <h4>Admin</h4>
+                    </div>
+                    <!--form view starts-->
+                    <f:view>
+
+
+                        <h:form class="center">
+                            <h:panelGrid columns="2" class="form-group center">
+                                <h:outputLabel value="Name:" for="name" />
+                                <h:inputText id="name" value="#{userController.user.name}" title="Name"  required="true" requiredMessage="Username is required" />
+                                <h:outputLabel value="Email:" for="email" />
+                                <h:inputText id="email" value="#{userController.user.email}" title="Email" required="true" requiredMessage="Email is required"/>
+                                <h:outputLabel value="Password:" for="password" />
+                                <h:inputText id="password" value="#{userController.user.password}" title="Password"  required="true" requiredMessage="Password is required" />
+                            </h:panelGrid>
+                            <!--buttons-->
+                            <h:commandButton  class="btn btn-top center" value="Register" rendered="#{!participantController.edit}" action="#{userController.create}"/>
+                            <h:messages class="messages" /> 
+                        </h:form>
+                    </f:view>
+                    <!--form view ends-->
+
+                    <!--form ends-->
+                </div>
+                <!--main container ends-->
+            </ui:define>
+        </ui:composition> 
+
+    </h:body>
+
+</html>
+

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Online conference Management</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    </h:head>
+    <h:body>
+        <!--loads common templates-->
+        <ui:composition template = "../template/common.xhtml">
+            <!--navigation bar components-->
+            <ui:define name="header">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:form>
+                                <a class="" href="#"></a>
+                                <li><h:commandLink class="navbar-brand" value="Online conference management system" action="adminPage"/></li>
+                            </h:form>
+                        </div>
+                        <h:form>
+                            <ul class="nav navbar-nav">
+                                <li><h:commandLink class="active" value="Topic" action="topicPage"/></li>
+                                <li><h:commandLink value="Country" action="countryPage"/></li>
+                                <li><h:commandLink value="Publisher" action="publisherPage"/></li>
+                                <li><h:commandLink value="Presentation" action="presenterPage"/></li>
+                                <li><h:commandLink value="Online Session" action="presentationSessionPage"/></li>
+                                <li><h:commandLink value="Participant" action="participantPage"/></li>
+                            </ul>
+                        </h:form>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </ui:define>
+            <!-- navigation bar ends -->
+            <!--contents starts-->
+            <ui:define name="content">
+                <!--Main container starts-->
+                <div class="container myContainerStyle">
+                    <div class="sectionTitle">
+                        <h4>Presentation</h4>
+                    </div>
+                    <!--form view starts-->
+                    <f:view>
+                        <!--form view ends-->
+                        <f:view>
+                            <!--list view starts-->
+                            <h:form>
+                                <h1><h:outputText value="List"/></h1>
+                                <h:dataTable value="#{presentationController.presentationList}" var="item" border="1" class="table table-dark ">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Id"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Title"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.title}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Description"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.description}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Status"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.status}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Topic"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.topic}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Publisher"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.publisher}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Participant"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.participant}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Image"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.image}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Options"/>
+                                        </f:facet>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                            <!--list view ends-->
+                        </f:view>
+                        <!--form ends-->
+                </div>
+                <!--main container ends-->
+            </ui:define>
+        </ui:composition> 
+
+    </h:body>
+
+</html>
+

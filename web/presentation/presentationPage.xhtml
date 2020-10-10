@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui = "http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Online conference Management</title>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+    </h:head>
+    <h:body>
+        <!--loads common templates-->
+        <ui:composition template = "../template/common.xhtml">
+            <!--navigation bar components-->
+            <ui:define name="header">
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:form>
+                                <a class="" href="#"></a>
+                                <li><h:commandLink class="navbar-brand" value="Online conference management system" action="adminPage"/></li>
+                            </h:form>
+                        </div>
+                        <h:form>
+                            <ul class="nav navbar-nav">
+                                <li><h:commandLink value="Topic" action="topicPage" rendered="#{userController.user.isPublisher()||userController.user.admin}"/></li>
+                                <li><h:commandLink value="Country" action="countryPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Publisher" action="publisherPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Presentation" action="presenterPage" rendered="#{userController.user.isPublisher()||userController.user.admin||userController.user.isParticipant()}"/></li>
+                                <li><h:commandLink value="Online Session" action="presentationSessionPage" rendered="#{userController.user.admin}"/></li>
+                                <li><h:commandLink value="Participant" action="participantPage" rendered="#{userController.user.admin}"/></li>
+                            </ul>
+                        </h:form>
+                        <h:form>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:commandLink value="Hi #{userController.user.name}" rendered="#{userController.user.participant||userController.user.admin||userController.user.publisher}"/></li>
+                                <li><h:commandLink value="Sing Up" rendered="false" action="registrationPage"/></li>
+                                <li><h:commandLink value="login" rendered="false" action="loginPage"/></li>
+                                <li><h:commandLink value="logOut" rendered="#{userController.user.participant||userController.user.admin||userController.user.publisher}" action="#{userController.logOut()}" /></li>
+                            </ul>
+                        </h:form>
+                    </div>
+                </nav>
+            </ui:define>
+            <!-- navigation bar ends -->
+            <!--contents starts-->
+            <ui:define name="content">
+                <!--Main container starts-->
+                <div class="container myContainerStyle">
+                    <div class="sectionTitle">
+                        <h4>Presentation</h4>
+                    </div>
+                    <!--form view starts-->
+                    <f:view >
+                        <h:form class="center" rendered="#{userController.user.isAdmin()||userController.user.isPublisher()}" enctype="multipart/form-data">
+                            <h1><h:outputText value="Create/Edit"/></h1>
+                            <h:panelGrid columns="2" class="form-group center">
+                                <h:outputLabel value="Id:" for="id" />
+                                <h:inputText id="id" value="#{presentationController.presentation.id}" title="Id"  disabled="true"/>
+                                <h:outputLabel value="Title:" for="title" />
+                                <h:inputText id="title" value="#{presentationController.presentation.title}" title="Title" required="true" requiredMessage=" Title required"/>
+                                <h:outputLabel value="Description:" for="description" />
+                                <h:inputText id="description" value="#{presentationController.presentation.description}" title="Description" required="true" requiredMessage="Description required" />
+                                <h:outputLabel value="Status:" for="status" />
+                                <h:selectOneMenu value="#{presentationController.presentation.status}" required="true" requiredMessage="Publisher required" >
+                                    <f:selectItem itemLabel="ACTIVE" itemValue="ACTIVE"/>  
+                                    <f:selectItem   itemLabel="IN ACTIVE" itemValue="INACTIVE"/>  
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Image:" for="image" />
+                                <h:inputFile  id="file-id"  value="#{presentationController.presentationImgFile}" required="true"/>   
+
+                                <h:outputLabel value="Publisher:" for="publisher" />
+                                <h:selectOneMenu value="#{presentationController.publisher.id}" required="true" requiredMessage="Publisher required" >
+                                    <f:selectItems value="#{presentationController.publisherList}" var="publisher"  itemLabel="#{publisher.name}" itemValue="#{publisher.id}"/>    
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Topic:" for="topic" />
+                                <h:selectOneMenu value="#{presentationController.topic.id}" required="true" requiredMessage=" Topic required">
+                                    <f:selectItems value="#{presentationController.topicList}" var="topic"  itemLabel="#{topic.topicId}-#{topic.topicTitle}" itemValue="#{topic.id}"/>    
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Participant:" for="participant" />
+                                <h:selectOneMenu value="#{presentationController.participant.id}" required="true" requiredMessage="Participant required">
+                                    <f:selectItems value="#{presentationController.participantList}" var="participant"  itemLabel="#{participant.name}" itemValue="#{participant.id}"/>    
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+
+                            <!--buttons-->
+                            <h:commandButton  class="btn btn-top" value="Create" rendered="#{!presentationController.edit}" action="#{presentationController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Update" rendered="#{presentationController.edit}"  action="#{presentationController.create}"/>
+                            <h:commandButton  class="btn btn-top" value="Cancel" rendered="#{presentationController.edit}"  action="#{presentationController.cancel}"/>
+                            <!--button ends-->
+                            <h:messages class="messages" /> 
+                        </h:form>
+                        <h:form>
+                            <h:commandButton  class="btn btn-top btn-success " value="Refresh"  action="#{presentationController.init}"/>
+                        </h:form>
+                    </f:view>
+                    <!--form view ends-->
+                    <f:view>
+                        <!--list view starts-->
+                        <h:form>
+                            <h1><h:outputText value="List"/></h1>
+                            <h:dataTable value="#{presentationController.presentationList}" var="item" border="1" class="table table-dark ">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Id"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.id}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Title"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.title}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Description"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.description}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Status"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.status}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Topic"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.topic.topicTitle}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Publisher"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.publisher.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Participant"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.participant.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Participant COuntry"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.participant.country.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Participant Country GMT"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.participant.country.gmtOffset}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Image"/>
+                                    </f:facet>
+                                    <h:graphicImage value="#{presentationController.fliebase}#{item.image}" width="100" height="100" ></h:graphicImage>
+                                    <div>
+                                        <h:outputText value="#{item.image}"/>
+                                    </div>
+                                </h:column>
+                                <h:column rendered="#{userController.user.admin||userController.user.publisher}">
+                                    <f:facet name="header">
+                                        <h:outputText value="Options"/>
+                                    </f:facet>
+                                    <h:commandLink class="btn btn-top btn-primary" value="Edit" action="#{presentationController.update(item)}" />
+                                    <h:commandLink class="btn btn-top btn-danger" value="Delete" action="#{presentationController.delete(item)}"/>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                        <!--list view ends-->
+                    </f:view>
+                    <!--form ends-->
+                </div>
+                <!--main container ends-->
+            </ui:define>
+        </ui:composition> 
+
+    </h:body>
+
+</html>
+
